@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>기업 성공확률 분석 페이지</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .intro-section {
+            background-color: #ffebf0;
+            padding: 40px 0;
+            border-bottom: 5px solid #f0c5d6;
+        }
+
+        .intro-section h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: #e68a8a;
+        }
+
+        .nav-tabs .nav-link {
+            background-color: #ffb8d5;
+            color: #fff;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .nav-tabs .nav-link.active {
+            background-color: #ff64a1;
+        }
+
+        .container {
+            margin-top: 40px;
+        }
+
+        .form-group label {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e68a8a;
+        }
+
+        .btn {
+            border-radius: 25px;
+            font-weight: bold;
+            padding: 12px 20px;
+        }
+
+        .btn-success {
+            background-color: #ff9c9c;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #ff7a7a;
+        }
+
+        .btn-primary {
+            background-color: #ff64a1;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff467d;
+        }
+
+        #imageContainer img {
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert {
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Intro Section -->
+<!-- <section class="intro-section text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-6">기업 성공확률 분석 페이지</h1>
+                <p class="lead"> <a href="https://github.com/seohyunee22/AI-Project" style="color: #ff64a1;">github.com/seohyunee22</a></p>
+            </div>
+        </div>
+    </div>
+</section> -->
+<section class="intro-section text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-6">기업 성공확률 분석 페이지</h1>
+          <p class="lead">
+            <!-- <a href="https://github.com/seohyunee22/AI-Project" style="color: #ff64a1;">github.com/seohyunee22</a> -->
+          </p>
+          <p style="font-size: 1rem; color: #888; max-width: 700px; margin: 0 auto;">
+            이 페이지는 머신러닝 기반 예측 모델을 활용하여 스타트업의 성공 가능성을 분석합니다.  
+            <br>
+            <br>
+            창업 연도, 산업 분야, 투자 단계, 매출 등 다양한 정보를 입력하면  
+            <br>
+            해당 기업의 성공 확률을 빠르고 직관적으로 확인할 수 있어요!
+          </p>
+          <p style="font-size: 0.95rem; color: #aaa; max-width: 700px; margin: 10px auto 0;">
+            데이터는 연구 목적을 위한 예시이며, 실제 투자나 판단에는 참고용으로만 활용해주세요 💡
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- 탭 메뉴 추가 -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new" aria-selected="true">예측#1</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="analysis-tab" data-toggle="tab" href="#analysis" role="tab" aria-controls="analysis" aria-selected="false">예측#2</a>
+    </li>
+</ul>
+
+<!-- 탭 내용 추가 -->
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1 class="mb-3 text-center" style="font-size: 30px;">예측 페이지</h1>
+                    <div id="imageContainer" style="background-color: #fff0f5; border-radius: 20px; padding: 20px; box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2); text-align: center; margin-bottom: 20px;">
+                        <label style="font-size: 1.1rem; color: #e75480; font-weight: 600;">
+                          ✨ 기업 정보를 입력하면 AI가 성공 확률을 예측해드립니다! ✨
+                        </label>
+                        <br><br>
+                        <!-- 향후 이미지 사용 시 주석 해제 -->
+                        <!-- <img src="/images/success_logo.png" alt="slab_predict.png" class="img-fluid" style="max-width: 300px; margin-top: 10px;"> -->
+                      </div>
+                      
+                    <!-- <div id="imageContainer">
+                        <label> { Features } 값 입력 시 { Label (성공확률) }값을 예측합니다.</label>
+                        <br></br>
+
+                        <img src="/images/success_logo.png" alt="slab_predict.png" class="img-fluid">
+                    </div> -->
+                    <form>
+                        <div class="form-group">
+                            <label for="foundedYear">설립연연도</label>
+                            <input type="number" class="form-control" id="foundedYear" placeholder="설립년도를 입력하세요">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">국가</label>
+                            <select class="form-control" id="country">
+                                <option value="CT001">CT001</option>
+                                <option value="CT002">CT002</option>
+                                <option value="CT003">CT003</option>
+                                <option value="CT004">CT004</option>
+                                <option value="CT005">CT005</option>
+                                <option value="CT006">CT006</option>
+                                <option value="CT007">CT007</option>
+                                <option value="CT008">CT008</option>
+                                <option value="CT009">CT009</option>
+                                <option value="CT010">CT010</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="industry">산업</label>
+                            <select class="form-control" id="industry">
+                                <option value="AI">AI</option>
+                                <option value="게임">게임</option>
+                                <option value="기술">기술</option>
+                                <option value="물류">물류</option>
+                                <option value="에너지">에너지</option>
+                                <option value="에듀테크">에듀테크</option>
+                                <option value="이커머스">이커머스</option>
+                                <option value="핀테크">핀테크</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="investmentStage">투자 단계</label>
+                            <select class="form-control" id="investmentStage">
+                                <option value="Seed">Seed</option>
+                                <option value="Series A">Series A</option>
+                                <option value="Series B">Series B</option>
+                                <option value="Series C">Series C</option>
+                                <option value="IPO">IPO</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="employees">직원 수</label>
+                            <input type="number" class="form-control" id="employees" placeholder="직원 수를 입력하세요">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="acquiredStatus">인수 여부</label>
+                            <select class="form-control" id="acquiredStatus">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ipoStatus">상장 여부</label>
+                            <select class="form-control" id="ipoStatus">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customers">고객 수 (단위: 백만명)</label>
+                            <input type="number" class="form-control" id="customers" placeholder="고객 수를 입력하세요">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="totalInvestment">총 투자금 (단위: 억원)</label>
+                            <input type="number" class="form-control" id="totalInvestment" placeholder="총 투자금액을 입력하세요">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="annualRevenue">연간 매출 (단위: 억원)</label>
+                            <input type="number" class="form-control" id="annualRevenue" placeholder="연간 매출을 입력하세요">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="snsFollowers">SNS 팔로워 수 (단위: 백만명)</label>
+                            <input type="number" class="form-control" id="snsFollowers" placeholder="SNS 팔로워 수를 입력하세요">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companyValue">기업 가치 (단위: 백억원)</label>
+                            <select class="form-control" id="companyValue">
+                                <option value="1500-2500">1500-2500</option>
+                                <option value="2500-3500">2500-3500</option>
+                                <option value="3500-4500">3500-4500</option>
+                                <option value="4500-6000">4500-6000</option>
+                                <option value="6000이상">6000이상</option>
+                            </select>
+                        </div>
+
+                        <button type="button" class="btn btn-success btn-block" id="downloadBtn1">샘플데이터 다운로드</button>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-block" id="prdBtn">분석 시작</button>
+                        <div id="baseResult"></div>
+                    </form>
+                    <div class="mt-4" id="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="analysis" role="tabpanel" aria-labelledby="analysis-tab">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1 class="mb-3 text-center" style="font-size: 20px;">예측 페이지 #2</h1>
+                    <label>준비중</label>
+                    <div class="mt-4" id="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>        
+</div>                    
+
+
+<script>
+    // 새로운 탭 클릭 시 해당 탭으로 이동하는 함수
+    $(document).ready(function() {
+        $('#new-tab').on('click', function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    });
+
+</script>
+
+
+<script>
+    document.getElementById('downloadBtn1').addEventListener('click', function() {
+        var link = document.createElement("a");
+        link.href = "/datas/train_data_example.xlsx"; // 다운로드할 파일의 경로
+        link.download = "train_data_example.xlsx"; // 다운로드될 파일의 이름
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+</script>
+
+
+<script>
+    // config.json 파일 로드
+    // var newHostname = "43.203.203.147";
+    // var newPort = "9999"
+    // var urlBase = `http://${newHostname}:${newPort}`;
+    //ngrok 사용 시
+    urlBase = 'https://fd87-34-86-4-172.ngrok-free.app';
+    // urlBase = 'https://5364-34-59-217-120.ngrok-free.app';
+
+    let urlFullBase = urlBase+"/predictBase";
+
+    // 회사 가치 범위를 숫자로 변환하는 함수
+    function convertCompanyValue(value) {
+        const valueMap = {
+            '1500-2500': 2000.0,
+            '2500-3500': 3000.0,
+            '3500-4500': 4000.0,
+            '4500-6000': 5250.0,
+            '6000이상': 6000.0
+        };
+        return valueMap[value] || 0;
+    }
+
+    // Yes/No를 1/0으로 변환하는 함수
+    function convertYesNo(value) {
+        return value === 'Yes' ? 1 : 0;
+    }
+
+    // 투자 단계를 로그 스케일로 변환하는 함수
+    function convertInvestmentStage(value) {
+        const investmentMap = {
+            'Seed': 5,
+            'Series A': 50,
+            'Series B': 175,
+            'Series C': 500,
+            'IPO': 2000
+        };
+        return Math.log(investmentMap[value] || 1);
+    }
+
+    // 분석시작 버튼 클릭 시 분석서버와 연계 코드
+    $("#prdBtn").click(function(){
+        let reqDataBase = {
+            'Founded_Year': Number($("#foundedYear").val()),
+            'Country': $("#country").val(),
+            'Industry': $("#industry").val(),
+            'Investment_Stage': convertInvestmentStage($("#investmentStage").val()),
+            'Employees': Number($("#employees").val()),
+            'Acquired_Status': convertYesNo($("#acquiredStatus").val()),
+            'IPO_Status': convertYesNo($("#ipoStatus").val()),
+            'Customers': Number($("#customers").val()),
+            'Total_Investment': Number($("#totalInvestment").val()),
+            'Annual_Revenue': Number($("#annualRevenue").val()),
+            'SNS_Followers': Number($("#snsFollowers").val()),
+            'Company_Value': convertCompanyValue($("#companyValue").val())
+        };
+ 
+        const headersBase = {
+            "Content-Type": "application/json",
+            'ngrok-skip-browser-warning': '69420', 
+        };
+
+        const dataBase = JSON.stringify(reqDataBase);
+        console.log(dataBase);
+
+        $.ajax({
+            url: urlFullBase,
+            headers: headersBase,
+            data: dataBase,
+            method: 'POST',
+            success: function(data) {
+                console.log(data);
+                let result = data.predictValue > 1 ? 1 : data.predictValue;
+                $("#baseResult").html(`<div class="alert alert-success">예측 결과: ${result}</div>`);
+            },
+            error: function(error) {
+                console.error(error);
+                $("#baseResult").html(`<div class="alert alert-danger">오류가 발생했습니다.</div>`);
+            }
+        });
+    });
+</script>
+  </body>
+</html>

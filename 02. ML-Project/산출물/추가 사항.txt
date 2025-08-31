@@ -1,0 +1,13 @@
+google drive:
+https://drive.google.com/drive/folders/1osxyPkgTa1N2EJGrYFizOPC4VUp3IC9G
+
+1. github 주소
+https://github.com/seohyunee22/AI-Project/tree/main/99.%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/02.%20ML-Project/codeset
+
+2. colab
+[학습]
+https://colab.research.google.com/drive/1hh-_3fQJWFmn9Y9JTpR0XzfFzveDLqrd?usp=sharing
+
+[ngrok 서빙]
+https://colab.research.google.com/drive/1j9c62NTfSdnSZD6KjzZm8eP9WM8dMF9F?usp=sharing
+

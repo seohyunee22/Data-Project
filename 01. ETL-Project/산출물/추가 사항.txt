@@ -1,0 +1,8 @@
+google drive:
+https://drive.google.com/drive/folders/1tJkqNywo44MqPTxlNes9-lMVDUAr1D8_
+
+git address :
+https://github.com/seohyunee22/AI-Project/blob/main/99.%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/01.%20ETL-Project/etlProject_script.py
+
+notion : 
+https://www.notion.so/mayy2yy/ETL-Project-1edede3815b780358ef2d654ab1a4983?pvs=4
